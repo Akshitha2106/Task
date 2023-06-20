@@ -13,6 +13,10 @@ const userSchema=mongoose.Schema({
         max:32,
         required:true,
     },
+    tasks:[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Task",
+    }],
     email:{
         type:String,
         min:6,
