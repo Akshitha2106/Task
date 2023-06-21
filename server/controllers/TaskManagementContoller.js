@@ -52,24 +52,24 @@ export const RemoveTask = async (req,res) =>{
     }
 } 
 
-export const Updatetask = async (req,res) =>{
-    try{
-        const task =  await Tasks.findOneAndUpdate({
-            _id:req.params.id,
-            userId:req.userId,
-        },{
-            $set:{
-                tag:{
-                    $eq: [false,'tag']
-                }
-            }
-        })
-        if(task){
-            res.json(jsonGenerate(StatusCode.SUCCESS,"Updated successfully",null));    
+export const Updatetask = async (req, res) => {
+    try {
+      const task = await Tasks.findOneAndUpdate(
+        {
+          _id: req.params.id,
+          userId: req.userId,
+        },
+        {
+          $set: {
+            tag: true, 
+          },
         }
-    }
-    catch(error){
-        return res.json(jsonGenerate(StatusCode.UNPROCESSABLE_ENTIY,"Error",error));
-    }
-}
-                                                                                                                                                                                                                                                                                                                                                                                 
+      );
+      if (task) {
+        res.json(jsonGenerate(StatusCode.SUCCESS, "Updated successfully",task ));
+      }
+    } catch (error) {
+      return res.json(jsonGenerate(StatusCode.UNPROCESSABLE_ENTITY, "Error", error)); 
+    }
+  };
+                                                                                                                                                                                                                                                                                                                                                                                
