@@ -5,6 +5,7 @@ import { Registerschema } from "../validationSchema/Registerschema.js";
 import Login from "../controllers/LoginController.js";
 import {Loginschema} from "../validationSchema/Loginschema.js";
 import { createTask } from "../controllers/TaskController.js";
+import { GetTask, GetTaskId, RemoveTask, Updatetask } from "../controllers/TaskManagementContoller.js";
 const apiRoute = express.Router();
 
 export const apiProtected=express.Router();
@@ -17,5 +18,15 @@ apiProtected.post("/createtask",
 check("title","Task title is required").exists(),
 ]
 ,createTask);
+
+apiProtected.get("/GetTask"
+,GetTask);
+apiProtected.get("/GetTaskId/:id"
+,GetTaskId);
+apiProtected.delete("/Removetask/:id"
+,RemoveTask);
+
+apiProtected.put("/Updatetask/:id"
+,Updatetask);
 
 export default apiRoute;

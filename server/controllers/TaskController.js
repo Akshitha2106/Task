@@ -24,7 +24,7 @@ export const createTask = async(req,res) =>{
     if(result){
         const user=await User.findOneAndUpdate({_id:req.userId},
             {
-               $push:{Tasks:result}
+               $push:{tasks:result}
             });
             return res.json(jsonGenerate(StatusCode.SUCCESS,"Task created successfully",result));
     }
